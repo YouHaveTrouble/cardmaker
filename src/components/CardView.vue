@@ -30,6 +30,7 @@ article.card {
   .image {
     width: 100%;
     min-height: 13rem;
+    max-height: 13rem;
     border: 1px solid #000;
     background-color: rgba(0,0,0, 0.2);
     img {

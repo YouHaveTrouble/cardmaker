@@ -10,6 +10,21 @@ const props = defineProps(["data"]);
 let currentScreen = ref("cards-list");
 let selectedCard = ref(null);
 
+function handleCardEdit(card: CardData) {
+
+  switch (currentScreen.value) {
+    case 'create-card':
+      props.data.cards.push(card);
+      currentScreen.value = 'cards-list';
+      break;
+    case "edit-card":
+      const i = props.data.cards.findIndex(c => c.id === selectedCard.id);
+      props.data.data.cards[i] = card;
+      currentScreen.value = 'cards-list';
+      return;
+  }
+}
+
 </script>
 
 <template>
@@ -44,6 +59,7 @@ let selectedCard = ref(null);
     <CardEdit
         v-if="currentScreen === 'create-card' || currentScreen === 'edit-card'"
         :card="selectedCard"
+        @card-edited="handleCardEdit"
     />
   </section>
 </template>

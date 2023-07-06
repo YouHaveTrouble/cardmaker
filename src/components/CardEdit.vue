@@ -1,13 +1,40 @@
-<script setup>
-import CardView from "@/components/CardView.vue";
+<script lang="ts" setup>
+import CardView from "../components/CardView.vue";
+import CardData from "../classes/CardData";
+import {PropType, ref, watch} from "vue";
 
-const props = defineProps(["card"]);
+const props = defineProps({
+  card: {
+    type: Object as PropType<CardData>,
+    required: true,
+  },
+});
+
+let card = ref(new CardData({}));
+
+watch(() => props.card, (newCard) => {
+  card.value = new CardData(newCard);
+});
+
+const emit = defineEmits(["cardEdited"]);
+
+function saveCard() {
+  emit("cardEdited", card.value);
+}
 
 </script>
 
 <template>
   <section>
     <div>
+      <div class="form-input">
+        <label for="card-name">Image url</label>
+        <input
+            id="card-name"
+            type="text"
+            v-model="card.image"
+        />
+      </div>
       <div class="form-input">
         <label for="card-name">Card name</label>
         <input
@@ -25,6 +52,12 @@ const props = defineProps(["card"]);
             maxlength="140"
         />
       </div>
+      <button
+          class="save-button"
+          type="button"
+          @click="saveCard()"
+          @keydown.enter.space="saveCard()"
+      >Save</button>
     </div>
     <div>
       <card-view
@@ -74,6 +107,18 @@ section {
         border-radius: 0.2rem;
         border: 1px solid #000;
         width: 100%;
+      }
+    }
+    .save-button {
+      background-color: transparent;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      color: #f5f5f5;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.1s;
+      &:hover {
+        background-color: rgba(255,255,255, 0.1);
       }
     }
   }
