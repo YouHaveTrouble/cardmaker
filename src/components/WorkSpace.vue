@@ -19,7 +19,7 @@ function handleCardEdit(card: CardData) {
       break;
     case "edit-card":
       const i = props.data.cards.findIndex(c => c.id === selectedCard.id);
-      props.data.data.cards[i] = card;
+      props.data.cards[i] = card;
       currentScreen.value = 'cards-list';
       return;
   }
@@ -55,6 +55,10 @@ function handleCardEdit(card: CardData) {
         <CardList
             v-if="currentScreen === 'cards-list'"
             :cards="data.cards"
+            @editCard="card => {
+              selectedCard = card;
+              currentScreen = 'edit-card';
+            }"
         />
       </keep-alive>
       <CardEdit

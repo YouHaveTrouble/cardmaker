@@ -12,6 +12,10 @@ const props = defineProps({
 
 let card = ref(new CardData({}));
 
+if (props.card) {
+  card.value = new CardData(props.card);
+}
+
 watch(() => props.card, (newCard) => {
   card.value = new CardData(newCard);
 });

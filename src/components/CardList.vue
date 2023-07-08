@@ -1,8 +1,13 @@
 <script lang="ts" setup>
 import CardView from "./CardView.vue";
+import CardData from "../classes/CardData";
 
 const props = defineProps(["cards"]);
-const emit = defineEmits(["cardSelected"]);
+const emit = defineEmits(["editCard"]);
+
+function editCard(card: CardData) {
+  emit("editCard", card);
+}
 
 </script>
 
@@ -17,6 +22,7 @@ const emit = defineEmits(["cardSelected"]);
     <div class="options">
       <button
           type="button"
+          @click="editCard(card)"
       >
         Edit
       </button>
