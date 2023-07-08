@@ -89,6 +89,7 @@ section.workspace {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    user-select: none;
     & > div {
       height: 100%;
       padding-inline: 0.5rem;
