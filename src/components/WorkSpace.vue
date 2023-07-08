@@ -25,6 +25,12 @@ function handleCardEdit(card: CardData) {
   }
 }
 
+function handleCardDelete(card: CardData) {
+  if (!confirm("Are you sure you want to delete this card?")) return;
+  const i = props.data.cards.findIndex(c => c.id === card.id);
+  props.data.cards.splice(i, 1);
+}
+
 </script>
 
 <template>
@@ -59,6 +65,7 @@ function handleCardEdit(card: CardData) {
               selectedCard = card;
               currentScreen = 'edit-card';
             }"
+            @deleteCard="handleCardDelete"
         />
       </keep-alive>
       <CardEdit
