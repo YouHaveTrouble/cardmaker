@@ -10,8 +10,12 @@ const props = defineProps(["data"]);
 let currentScreen = ref("cards-list");
 let selectedCard = ref(null);
 
-function handleCardEdit(card: CardData) {
+function handleCardCreate() {
+  selectedCard.value = new CardData({});
+  currentScreen.value = 'create-card';
+}
 
+function handleCardEdit(card: CardData) {
   switch (currentScreen.value) {
     case 'create-card':
       props.data.cards.push(card);
@@ -57,11 +61,8 @@ function saveToFile() {
       </div>
       <div
           tabindex="1"
-          @click="() => {
-            selectedCard = new CardData({});
-            currentScreen = 'create-card';
-          }"
-          @keydown.enter.space="currentScreen = 'create-card'"
+          @click="handleCardCreate"
+          @keydown.enter.space="handleCardCreate"
           :class="{active: currentScreen === 'create-card'}"
       >
         Create card
