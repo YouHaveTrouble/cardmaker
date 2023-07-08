@@ -40,6 +40,7 @@ function clickOnElement(event: any) {
         type="file"
         id="file"
         @input="onFileUploaded($event)"
+        accept=".cards"
         :disabled="loading"
     >
     <label

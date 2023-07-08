@@ -31,6 +31,17 @@ function handleCardDelete(card: CardData) {
   props.data.cards.splice(i, 1);
 }
 
+function saveToFile() {
+  const data = JSON.stringify(props.data);
+  const blob = new Blob([data], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'data.cards';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 </script>
 
 <template>
@@ -54,6 +65,13 @@ function handleCardDelete(card: CardData) {
           :class="{active: currentScreen === 'create-card'}"
       >
         Create card
+      </div>
+      <div
+          tabindex="1"
+          @click="saveToFile"
+          @keydown.enter.space="saveToFile"
+      >
+        Save to file
       </div>
     </nav>
     <main>
