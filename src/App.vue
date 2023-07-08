@@ -9,7 +9,6 @@ let data: StorageData | null = ref(null);
 </script>
 
 <template>
-  <main>
     <FileUpload
         v-if="!data"
         @fileLoaded="data = $event"
@@ -17,11 +16,10 @@ let data: StorageData | null = ref(null);
     <section v-if="data" class="project">
       <WorkSpace :data="data"/>
     </section>
-  </main>
 </template>
 
 <style lang="scss">
-main {
+section {
   width: 100%;
   height: 100%;
   padding: 0;
@@ -31,6 +29,6 @@ section.project {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
+  min-height: calc(100% + 2rem);
 }
 </style>

@@ -50,25 +50,27 @@ function handleCardEdit(card: CardData) {
         Create card
       </div>
     </nav>
-    <keep-alive>
-      <CardList
-          v-if="currentScreen === 'cards-list'"
-          :cards="data.cards"
+    <main>
+      <keep-alive>
+        <CardList
+            v-if="currentScreen === 'cards-list'"
+            :cards="data.cards"
+        />
+      </keep-alive>
+      <CardEdit
+          v-if="currentScreen === 'create-card' || currentScreen === 'edit-card'"
+          :card="selectedCard"
+          @card-edited="handleCardEdit"
       />
-    </keep-alive>
-    <CardEdit
-        v-if="currentScreen === 'create-card' || currentScreen === 'edit-card'"
-        :card="selectedCard"
-        @card-edited="handleCardEdit"
-    />
+    </main>
   </section>
 </template>
 
 <style scoped lang="scss">
 section.workspace {
-  height: calc(100% - 4rem);
   nav {
     width: 100%;
+    max-width: 100vw;
     height: 2rem;
     padding: 0;
     margin: 0;
@@ -91,6 +93,12 @@ section.workspace {
         cursor: default;
       }
     }
+  }
+  main {
+    width: 100%;
+    height: 100%;
+    min-height: calc(100vh - 2rem);
+    padding-top: 1rem;
   }
 }
 </style>

@@ -71,14 +71,11 @@ function saveCard() {
 section {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   width: 100%;
   height: 100%;
-  padding-block: 1rem;
   div {
-    width: 50%;
+    width: calc(50% - 1rem);
     min-width: 25rem;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -120,6 +117,17 @@ section {
       &:hover {
         background-color: rgba(255,255,255, 0.1);
       }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  section {
+    flex-direction: column;
+    div {
+      width: 100%;
+      padding: 1rem;
+      min-width: unset;
     }
   }
 }
