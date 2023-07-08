@@ -45,7 +45,7 @@ function saveCard() {
             id="card-name"
             type="text"
             v-model="card.name"
-            maxlength="48"
+            maxlength="44"
         />
       </div>
       <div class="form-input">
@@ -53,7 +53,7 @@ function saveCard() {
         <textarea
             id="card-description"
             v-model="card.description"
-            maxlength="140"
+            maxlength="135"
         />
       </div>
       <button

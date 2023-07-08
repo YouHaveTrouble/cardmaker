@@ -20,17 +20,18 @@ const props = defineProps(["card"]);
 article.card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 18rem;
   height: 25rem;
-  gap: 1rem;
+  gap: 0.8rem;
   background-color: #a99786;
   padding: 0.5rem;
   color: black;
   border-radius: 0.2rem;
   .image {
     width: 100%;
-    min-height: 13rem;
-    max-height: 13rem;
+    min-height: 12.5rem;
+    max-height: 12.5rem;
     border: 1px solid #000;
     background-color: rgba(0,0,0, 0.2);
     img {
@@ -54,7 +55,7 @@ article.card {
     font-size: 1rem;
     border: 1px solid #000;
     height: 100%;
-    max-height: 6.5rem;
+    max-height: 6.6rem;
     max-width: 100%;
     padding: 0.25rem;
     background-color: rgba(0,0,0, 0.2);
